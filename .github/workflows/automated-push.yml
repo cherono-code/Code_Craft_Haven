@@ -17,7 +17,7 @@ jobs:
         run: |
           echo "// New code snippet" >> code_snippets.txt
           echo "console.log('Hello from GitHub Actions');" >> code_snippets.txt
-
+          
       - name: Commit and push changes
         run: |
           git config --global user.name "cherono-code"
