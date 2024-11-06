@@ -4,8 +4,24 @@
 
 {% block content %}
 <section class="community-section">
+    <div class="slider-container">
+        <div class="slider">
+            <img src="{{ url_for('static', filename='images/image1.jpg') }}" alt="image1">
+            <img src="{{ url_for('static', filename='images/image2.jpg') }}" alt="image2">
+            <img src="{{ url_for('static', filename='images/image3.jpg') }}" alt="image3">
+            <img src="{{ url_for('static', filename='images/image1.jpg') }}" alt="image1">
+            <img src="{{ url_for('static', filename='images/image2.jpg') }}" alt="image2">
+            <img src="{{ url_for('static', filename='images/image3.jpg') }}" alt="image3">
+            <img src="{{ url_for('static', filename='images/image1.jpg') }}" alt="image1">
+            <img src="{{ url_for('static', filename='images/image2.jpg') }}" alt="image2">
+            <img src="{{ url_for('static', filename='images/image3.jpg') }}" alt="image3">
+        
+        </div>
+    </div>
+<div class="community">   
     <h2>Join Our Community</h2>
-    <p>Code Craft Haven is more than just a hackathon. It's a community of like-minded individuals who are passionate about technology and innovation. Connect, collaborate, and create with us!</p>
+    <p>Code Craft Haven is more than just a hackathon. It's a community of like-minded individuals who are passionate about technology and innovation. Connect, collaborate, mentor, be mentored and create with us!</p>
     <a href="https://discord.gg/VYGSjEna" target="_blank" class="btn">Join the Community</a>
+</div>  
 </section>
 {% endblock %}

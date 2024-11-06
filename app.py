@@ -1,7 +1,19 @@
+import os
 from flask import Flask, render_template, request
-from app.routes import main
+import firebase_admin
+from firebase_admin import credentials
 
+# Initialize the Flask app
 app = Flask(__name__)
+
+# Path to the service account key JSON file
+cred = credentials.Certificate(os.path.join(os.path.dirname(__file__), 'serviceAccountKey.json'))
+
+# Initialize the Firebase Admin SDK
+firebase_admin.initialize_app(cred)
+
+# Import the main blueprint
+from app.routes import main
 
 # Register the blueprint
 app.register_blueprint(main)
@@ -31,5 +43,6 @@ def internal_error(error):
 
 if __name__ == '__main__':
     app.run(debug=True)
+
 
 

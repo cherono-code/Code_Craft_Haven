@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Founder - Code Craft Haven{% endblock %}
+
+{% block content %}
+<section class="founder-section">
+    <h2>Meet the Founder</h2>
+    <div class="founder">
+        <img src="{{ url_for('static', filename='images/founder.jpg') }}" alt="Founder" class="founder-photo">
+        <div class="founder-bio">
+            <h3>Cherono Ochieng'</h3>
+            <p>Cherono Ochieng' is the visionary behind Code Craft Haven. The idea for Code Craft Haven was born during a time when I was seeking to connect with like-minded visionaries in the Nakuru Tech Space, but that quest didn’t lead to much success. This made me realize that if such a community didn’t exist, I would create one. My goal was to provide mentorship and share the little knowledge I had in programming.</p>
+            <p>After mentoring a few passionate individuals, I felt the drive to participate in a hackathon. However, my search for one close by led me only to events in Nairobi. It was then that I realized the universe was pushing me toward a path that truly resonated with my career and passion. This experience highlighted a gap — Nakuru lacked such tech events, especially hackathons. Thus, I decided to build a platform that would bring tech enthusiasts together right here, in Nakuru.</p>
+            <p>I have a gut feeling that this is the right direction. We will eventually bring and build tech companies that will elevate the Nakuru tech space to a new level, transforming it into a thriving hub of innovation and opportunity.</p>
+            <p><em>"At Code Craft Haven, we turn visionary dreams into reality, fostering innovation and growth where it's needed most."</em> - Cherono Ochieng'</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

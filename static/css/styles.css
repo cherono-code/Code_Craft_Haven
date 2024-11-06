@@ -1,14 +1,16 @@
+
 body {
+    background: url('../images/bgcolor.png') no-repeat center center/cover;
+    background-color: rgba(0, 0, 0, 0.4); /* Black overlay with 50% opacity */
+    background-blend-mode: darken; /* Adjust how the image and color blend */
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #869DAB;
+    /*background-color: #869DAB;*/
 }
 
 header {
-    background: #3D313F;
     color: #fff;
-    padding: 30px 30px;
     
 }
 
@@ -16,13 +18,29 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: sticky;
-    top: 0;
+    padding: 30px 30px;
+    top: 0px;
 }
 
 .logo {
-    font-size: 24px;
-    font-weight: bold;
+    border-radius: 20px;
+}
+
+.logo img {
+    width: 190px;
+    height: 70px;
+    padding : 0px;
+    margin: 0px;
+    transform: scale(1.2);
+    object-fit: cover; /* Scales image to cover the dimensions, cropping as needed */
+    object-position: center; /* Centers image within the cropped area */
+    border-radius: 20px;
+}
+
+.nav-links {
+    background: #673A82;
+    padding: 20px;
+    border-radius: 20px;  
 }
 
 nav ul {
@@ -39,25 +57,58 @@ nav ul li {
 nav ul li a {
     color: #fff;
     text-decoration: none;
+    transition: color 0.3s;
 }
 
-.hero {
-    background: url('../images/') no-repeat center center/cover;
+nav a::hover {
     color: #fff;
-    height: 100vh;
+}
+.hero {
+    color: #F5FEFD;
+    min-height: 120vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
+    margin-top: 60px;
+}
+
+.hero-content {
+    transform: translateY(-50%); /* Adjust for vertical centering */
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+    padding: 20px; /* Add some padding */
+    border-radius: 10px; /* Optional: rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Optional: shadow effect */
+    align-items: center;
+    transform: translateY(-20%);
 }
 
 .hero-content h1 {
-    font-size: 50px;
-    margin: 0;
+    font-size: 60px;
+    margin: 20px;
+    padding: 20px;
+    animation: fadeInScale 2s ease forwards;
+}
+
+.hero-content p {
+    font-size: medium;
+    font-weight: 400;
+    align-items: center;
+    animation: fadeInScale 2s ease forwards;
+}
+@keyframes fadeInScale {
+    0% {
+        opacity: 0; /* Start invisible */
+        transform: scale(0.5); /* Start smaller */
+    }
+    100% {
+        opacity: 1; /* Fully visible */
+        transform: scale(1); /* Original size */
+    }
 }
 
 .btn {
-    background: #DCC1B0;
+    background: #EFBF04;
     color: #fff;
     padding: 10px 20px;
     text-decoration: none;
@@ -66,9 +117,22 @@ nav ul li a {
     display: inline-block;
 }
 
-.btn hover {
+.btn a::before {
     background-color: #FF6EC7;
     color: #fff;
+}
+.btn {
+    background-color: #A8E6CE; /* Light Green */
+    color: #673A82; /* Deep Purple for text */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px; /* Add rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #95D9B3; /* Slightly darker shade on hover */
 }
 
 /* Hamburger menu for mobile */
@@ -206,23 +270,152 @@ nav ul li a {
 }
 
 
-.community-section, .founder-section, .contact-section {
+.founder-section, .contact-section {
     padding: 50px;
     text-align: center;
     background: #fff;
     margin-bottom: 20px;
 }
-
-.hackathon-detail {
-    background-color: #869DAB;
+/* COMMUNITY */
+.community-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center-aligns items vertically */
     padding: 50px;
     text-align: center;
+    color: #F5FEFD;
+    background-color: rgba(0, 0, 0, 0.7);
     margin-bottom: 20px;
-    margin-left: 20px;
 }
 
+.slider-container {
+    overflow: hidden; /* Hides overflow, creating a viewport */
+    width: 100%; /* Set width to fit the page or desired container */
+    height: 500px; /* Adjust height based on your images */
+}
+
+.slider {
+    display: flex; /* Aligns images in a row */
+    gap: 20px; /* Optional: space between images */
+    animation: slide 15s linear infinite; /* Smooth, continuous animation */
+}
+
+.slider img {
+    object-fit: cover;
+    height: 400px;/* Scales images to container height */
+    width: 500px; /* Maintains image aspect ratio */*/
+}
+
+/* Define the sliding animation */
+@keyframes slide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); } /* Slides the entire row out of view */
+}
+
+
+/* Hackathon Details Section */
+.hackathon-details {
+    max-width: 1000px;
+    min-height: 170vh;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Title Styles */
+.hackathon-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #F5FEFD; /* Primary color */
+}
+
+/* Upcoming Hackathons */
+.upcoming-hackathons {
+    background-color: #fff;
+    margin-bottom: 40px;
+    padding: 15px;
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 8px;
+}
+
+/* Previous Hackathons */
+.previous-hackathons {
+    margin-bottom: 40px;
+}
+
+/* Event Gallery Styles */
+.event-gallery {
+    display: flex;
+    flex-direction: column; /* Stack events vertically */
+    gap: 15px; /* Spacing between events */
+}
+
+.event {
+    background-color: #f9f9f9; /* Light background for events */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    position: relative; /* Position for toggle button */
+}
+
+.toggle-details {
+    background-color: #673A82; /* Primary color for button */
+    color: #fff; /* White text */
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Slideshow Container */
+.slideshow-container {
+    max-width: 100%;
+    position: relative;
+    margin: 20px 0; /* Margin around slideshow */
+}
+
+/* Slides */
+.mySlides {
+    display: none; /* Hide slides by default */
+}
+
+.fade {
+    animation: fadeEffect 1s; /* Fade animation */
+}
+
+@keyframes fadeEffect {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
+}
+
+/* Blog Posts Section */
+.blog-posts {
+    margin-top: 40px;
+    border-top: 2px solid #673A82; /* Decorative border for separation */
+    padding-top: 20px; /* Padding above the blog posts */
+}
+
+.blog-posts article {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f1f1f1; /* Light gray background for articles */
+    border-radius: 5px;
+}
+
+/* Responsive Styles */
+@media (max-width: 800px) {
+    .hackathon-title {
+        font-size: 2rem; /* Smaller font size for smaller screens */
+    }
+}
+
+/* FOOTER */
 footer {
-    background: #847072; /* Background color */
+    background: #CDCDCD; /* Background color */
     color: #fff; /* Text color */
     padding: 20px 0; /* Padding for spacing */
     text-align: center; /* Center align text */
@@ -234,7 +427,7 @@ footer {
 
 
 
-/* General styling for the founder section */
+/* FOUNDER */
 .founder, .hackathon-detail {
     display: flex;
     align-items: center;
@@ -276,100 +469,203 @@ footer {
     color: #888;
 }
 
-.founder-section, .community-section {
-    background-color: #869DAB;
+    #typewriter {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 20px;
+        white-space: nowrap; 
+        border-right: 2px solid #000; 
+        display: inline-block;
+        overflow: hidden; 
+        animation: blink 0.75s step-end infinite alternate;
+    }
+
+    /* Slideshow Styling */
+.slideshow-container {
+    max-width: 100%;
+    position: relative;
+    margin: auto;
 }
 
-.hackathon .hackathon-details {
-    background-color: #869DAB;
-
+.mySlides {
+    display: none;
 }
 
-.hackathon-image {
-    display: flex;
-    align-items: center; /* Center the content vertically */
-    justify-content: space-between; /* Space out the image and paragraph */
-    margin: 20px;
-  }
+.fade {
+    animation: fadeEffect 1s;
+}
 
-  .hackathon-events {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    margin-left: 20px;
-    margin-right: 20px;
-  }
+@keyframes fadeEffect {
+    from { opacity: 0.4 } 
+    to { opacity: 1 }
+}
 
-  video {
-    width: 500px;
-    height: 550px;
-  }
-  
-  .image-left {
-    max-width: 45%; /* Make the image take 45% of the container width */
-    height: 400px;
-    border-radius: 10px; /* Optional: Adds a slight rounded corner to the image */
-  }
+/* Toggle Button Styling */
+.toggle-details {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #673A82;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
 
-  
-  .text-right {
-    max-width: 50%; /* Make the text take 50% of the container width */
-    padding-left: 20px; /* Adds space between the image and text */
-    font-size:36px;
-    color: #fff;
-    line-height: 1.6;
+/* Blog Post Styling */
+.blog-posts article {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+}
+
+/* SIGN UP | REGISTRATION FORM*/
+.registration-container {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff; /* White background for the form */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.registration-title {
     text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 20px;
+    color: #673A82; /* Your primary color */
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
     font-weight: bold;
 }
 
-#typewriter {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 24px;
-    white-space: nowrap; /* Prevents line break */
-    border-right: 2px solid #000; /* Cursor effect */
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.btn {
+    padding: 10px;
+    background-color: #673A82; /* Your primary color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #5a2d6d; /* Slightly darker on hover */
+}
+
+/*REGISTRATION FOR COLLABORATOR/ SPONSOR*/
+.registration-form {
+    max-width: 500px;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    color: #5a2d6d;
+    padding: 20px;
+}
+
+/* SIGNUP */
+/* Center the form on the page */
+.signup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5; /* Light background */
+}
+
+.form-container {
+    background-color: #ffffff; /* White form background */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    color: #555;
+    margin: 0.5rem 0 0.25rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="radio"] {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Styling for radio buttons */
+input[type="radio"] {
+    width: auto;
+    margin-right: 0.5rem;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #007bff; /* Blue submit button */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Adjusting spacing for radio labels */
+.form-container input[type="radio"] + label {
     display: inline-block;
-    overflow: hidden; /* Hides the overflow text until it's revealed */
-    animation: blink 0.75s step-end infinite alternate; /* Blinking cursor effect */
+    margin-right: 1rem;
 }
 
-@keyframes blink {
-    from { border-right-color: transparent; }
-    to { border-right-color: black; }
+/* Responsive adjustments for smaller screens */
+@media (max-width: 500px) {
+    .form-container {
+        padding: 1rem;
+    }
+
+    label {
+        font-size: 0.9rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    button[type="submit"] {
+        font-size: 0.9rem;
+    }
 }
-
-  
-  @media (max-width: 768px) {
-    /* For mobile devices, stack the image and text vertically */
-    .container {
-      flex-direction: column;
-      text-align: center;
-    }
-}
-    
-    .image-left, .text-right {
-      max-width: 100%; /* Full width on small screens */
-      padding: 0; /* Remove padding on small screens */
-    }
-  
-    .text-right {
-      padding-top: 20px; /* Add space between the image and text */
-    }
-
-    .text-left {
-        width: 500px;
-        height: 550px;
-        border: 1px solid #b6b1b1;
-        border-radius: 8px;
-        color: #fff;
-    }
-
-    .no-bullets {
-        list-style-type: none; /* Removes bullets */
-        padding-left: 0; /* Removes the default padding */
-    }
-    
-    .no-bullets li {
-        margin-bottom: 5px; /* Adds spacing between list items */
-    }
-    

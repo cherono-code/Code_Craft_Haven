@@ -3,64 +3,66 @@
 {% block title %}Hackathon - Code Craft Haven{% endblock %}
 
 {% block content %}
+
 <section class="hackathon-details">
-    <div class="hackathon-image">
-        <img src="{{ url_for('static', filename='images/hackathonanimation.jpg') }}" alt="Hackathon" class="image-left">
-        <p class="text-right" id="typewriter">VISUALIZE | INNOVATE | COLLABORATE | CODE | SHOWCASE  </p>
+    <!-- Upcoming Hackathons Section -->
+    <h1 class="hackathon-title">Upcoming Hackathons</h1>
+    <div class="upcoming-hackathons">
+        <h2>Hackathon 2025</h2>
+        <p><strong>Date:</strong> March 15, 2025</p>
+        <p>Join us for another exciting event where you can innovate, collaborate, and showcase your skills!</p>
     </div>
-    <h1 class="hackathon-title">Hackathon Events</h1>
-    <div class="hackathon-events">
-        <div class="text-left"><p>🌟 Unleash Your Creativity! 🌟</p>
-            <p>Dive into a world where tech ideas come to life! 💻🚀</p>
-             <p>At Code Craft Haven, we’re building a vibrant community where Nakuru tech enthusiasts of all levels—whether seasoned pros or eager beginners—can come together to collaborate, learn, and tackle real-world challenges.</p>
-            <p>et ready for 8 hours of pure coding bliss, where your innovative ideas can shine and make a difference.</p></div>
-        <video width="600" controls>
-            <source src="{{ url_for('static', filename='videos/1st edition HACKATHON-poster.mp4') }}" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    <div class="schedule">
-        <h2>Hackathon Details</h2>
-        <h3>Schedule</h3>
-        <p><strong>Event Date:</strong> 12th October 2024</p>
-        <p><strong>Location:</strong> Kijani Kafe, Milimani, Nakuru</p>
-        <p><strong>Time:</strong> 10 AM - 6 PM (1800 hrs)</p>
+
+    <!-- Previous Hackathons Section -->
+    <h2>Previous Hackathons</h2>
+    <section class="previous-hackathons">
+        <div class="event-gallery">
+            <div class="event">
+                <h3>1st Edition Hackathon</h3>
+                <p><strong>Date:</strong> October 12, 2024</p>
+                <button class="toggle-details">Show Details</button>
+                <div class="details" style="display: none;">
+                    <p>Highlights from the event...</p>
+                    <p>Projects, awards, and more!</p>
+                </div>
+            </div>
+            <!-- Additional previous hackathons here -->
+        </div>
         
-        <h3>Itinerary</h3>
-        <ul class="no-bullets">
-            <li><strong>10:00 AM - 10:30 AM:</strong> Welcome</li>
-            <li><strong>10:30 AM - 11:00 AM:</strong> Team Formation | Idea Pitching</li>
-            <li><strong>11:00 AM - 1:00 PM:</strong> First Coding Session </li>
-            <li><strong>1:00 PM - 2:00 PM:</strong> Lunch Break</li>
-            <li><strong>2:00 PM - 5:30 PM:</strong> Second Coding Session</li>
-            <li><strong>5:30 PM - 6:00 PM:</strong> Presentations, Judging, and Awards</li>
-        </ul>
+        <!-- Slideshow Carousel for Images -->
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+                <img src="{{ url_for('static', filename='images/hackathon1.jpg') }}" style="width:100%">
+            </div>
+            <div class="mySlides fade">
+                <img src="{{ url_for('static', filename='images/hackathon2.jpg') }}" style="width:100%">
+            </div>
+            <!-- More images -->
+        </div>
+    </section>
+
+    <!-- Blog Posts Section -->
+    <h2>Hackathon Blog Posts</h2>
+    <div class="blog-posts">
+        <article>
+            <h3>Recap of the 1st Edition Hackathon</h3>
+            <p>Insights, highlights, and takeaways from the first edition hackathon...</p>
+        </article>
+        <!-- Additional blog posts here -->
     </div>
-    </div>
-    <!--
-    <div class="prizes">
-        <h3>Prizes</h3>
-        <p>1st Place: To be announced</p>
-        <p>2nd Place: To be announced</p>
-        <p>3rd Place: To be announced</p>
-    </div>
-    
-    <div class="sponsors">
-        <h3>Sponsors</h3>
-        <p>Currently looking for tech companies willing to partner or sponsor our event</p>
-    </div>
-     -->
+    <div class="register">
     <a id="register"></a>
 <form class="registration-form">
-    <h3>Register for the Hackathon</h3>
+    <h3>Register to Sponsor or collaborate the Hackathon</h3>
     
     <input type="text" name="name" placeholder="Your Name" required>
     <input type="email" name="email" placeholder="Your Email" required>
     
-    <h4>Are you registering as a participant or a sponsor?</h4>
+    <h4>Are you registering as a collaborator or a sponsor?</h4>
     
     <label>
-        <input type="radio" name="registration_type" value="participant" required>
-        Participant
+        <input type="radio" name="registration_type" value="collaborator" required>
+        Collaborator
     </label>
     
     <label>
@@ -70,6 +72,8 @@
     
     <button type="submit">Submit</button>
 </form>
+</div>
 
 </section>
 {% endblock %}
+

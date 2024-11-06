@@ -114,3 +114,41 @@ const hamburger = document.querySelector('.hamburger');
         navLinks.classList.toggle('active');
     });
 
+    document.addEventListener("DOMContentLoaded", () => {
+        const toggleButtons = document.querySelectorAll(".toggle-details");
+    
+        toggleButtons.forEach(button => {
+            button.addEventListener("click", (e) => {
+                const details = e.target.nextElementSibling;
+    
+                if (details.style.display === "none" || !details.style.display) {
+                    details.style.display = "block";
+                    e.target.textContent = "Hide Details";
+                } else {
+                    details.style.display = "none";
+                    e.target.textContent = "Show Details";
+                }
+            });
+        });
+    });
+    
+    let slideIndex = 0;
+    function showSlides() {
+        let slides = document.getElementsByClassName("mySlides");
+    
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+    
+        if (slideIndex > slides.length) { 
+            slideIndex = 1;
+        }
+        
+        slides[slideIndex - 1].style.display = "block";
+        setTimeout(showSlides, 3000); // Change image every 3 seconds
+    }
+    
+    showSlides();
+    
+

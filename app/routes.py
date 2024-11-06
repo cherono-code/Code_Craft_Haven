@@ -10,6 +10,10 @@ def community():
 def hackathon():
     return render_template('hackathon.html')
 
+@main.route('/mentor')
+def mentor():
+    return render_template('mentor.html')
+
 @main.route('/founder')
 def founder():
     return render_template('founder.html')
@@ -17,6 +21,10 @@ def founder():
 @main.route('/contact')
 def contact():
     return render_template('contact.html')
+
+@main.route('/signup')
+def signup():
+    return render_template('signup.html')
 
 @main.route('/chatbot', methods=['POST'])
 def chatbot():

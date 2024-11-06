@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Code Craft Haven{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Code Craft Haven</div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('main.community') }}">Community</a></li>
+                <li><a href="{{ url_for('main.hackathon') }}">Hackathon</a></li>
+                <li><a href="{{ url_for('main.founder') }}">Founder</a></li>
+                <li><a href="{{ url_for('main.contact') }}">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div> 
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <div id="chatbot-container">
+        <button id="chatbot-button">
+            <img src="{{ url_for('static', filename='images/chatbotphoto.png') }}" alt="Chatbot Icon">
+        </button>
+        <div id="chatbot-box" class="hidden">
+            <div id="chatbot-header">
+                <h3>Sofia</h3>
+                <button id="chatbot-close">&times;</button>
+            </div>
+            <div id="chatbot-messages">
+                <p>Hello, I'm Sofia, how can I assist you?</p>
+            </div>
+            <div id="chatbot-input-container">
+                <input type="text" id="chatbot-input" placeholder="Type your message here...">
+                <button id="chatbot-send">Send</button>
+            </div>
+        </div>
+    </div>    
+    
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+<footer>
+    <button onclick="openSubscriptionForm()">Subscribe to our Newsletter</button>
+    <p>&copy; 2024 Code Craft Haven. All Rights Reserved.</p>
+</footer>
+</html>
