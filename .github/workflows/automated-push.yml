@@ -1,0 +1,31 @@
+name: Automated Code Snippet Push
+
+on:
+  schedule:
+    # Run at 12:00 AM UTC every day
+    - cron: '0 0 * * *'
+
+jobs:
+  push_code:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Add a code snippet
+        run: |
+          echo "// New code snippet" >> code_snippets.txt
+          echo "console.log('Hello from GitHub Actions');" >> code_snippets.txt
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "cherono-code"
+          git config --global user.email "cheronodaisy38@gmail.com"
+          git add code_snippets.txt
+          git commit -m "Add new code snippet"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
