@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Add a code snippet
         run: |
@@ -22,6 +22,7 @@ jobs:
         run: |
           git config --global user.name "cherono-code"
           git config --global user.email "cheronodaisy38@gmail.com"
+          git remote set-url origin https://$PAT_TOKEN@github.com/cherono-code/Code_Craft_Haven.git
           git add code_snippets.txt
           git commit -m "Add new code snippet"
           git push
