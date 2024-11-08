@@ -26,8 +26,8 @@
             </ul>
             </div>
             <div class="hamburger">
-                <span></span>
-                <span></span>
+                <span><li><a href="{{ url_for('main.community') }}">Community</a></li></span>
+                <span><li><a href="{{ url_for('main.hackathon') }}">Hackathon</a></li></span>
                 <span></span>
             </div> 
         </nav>
@@ -59,6 +59,26 @@
     <script src="https://kit.fontawesome.com/888b64ed6e.js" crossorigin="anonymous"></script>
 </body>
 <footer>
+    <!-- Social Media Links -->
+    <div class="social-links">
+        <a href="https://instagram.com/codecraft_haven" target="_blank">Instagram</a>
+        <a href="https://x.com/yourprofile" target="_blank">X</a>
+        <a href="https://facebook.com/yourprofile" target="_blank">Facebook</a>
+    </div>
+    
     <p>&copy; 2024 Code Craft Haven. All Rights Reserved.</p>
+
+    <!-- Newsletter Subscribe -->
+    <div class="newsletter">
+        <div>
+        <p>Subscribe to our newsletter:</p>
+        </div>
+        <div>
+        <form action="#" method="post">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">Subscribe</button>
+        </form>
+        </div>
+    </div>
 </footer>
 </html>

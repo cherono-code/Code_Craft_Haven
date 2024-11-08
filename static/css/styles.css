@@ -91,7 +91,7 @@ nav a::hover {
 }
 
 .hero-content p {
-    font-size: medium;
+    font-size: 18px;
     font-weight: 400;
     align-items: center;
     animation: fadeInScale 2s ease forwards;
@@ -289,6 +289,7 @@ nav a::hover {
     margin-bottom: 20px;
 }
 
+
 .slider-container {
     overflow: hidden; /* Hides overflow, creating a viewport */
     width: 100%; /* Set width to fit the page or desired container */
@@ -313,7 +314,13 @@ nav a::hover {
     100% { transform: translateX(-100%); } /* Slides the entire row out of view */
 }
 
+.community h2 {
+    color: #F5FEFD;
+}
 
+.community p {
+    font-size: 16px;
+}
 /* Hackathon Details Section */
 .hackathon-details {
     max-width: 1000px;
@@ -415,16 +422,110 @@ nav a::hover {
 
 /* FOOTER */
 footer {
-    background: #CDCDCD; /* Background color */
-    color: #fff; /* Text color */
-    padding: 20px 0; /* Padding for spacing */
-    text-align: center; /* Center align text */
-    position: fixed;  
-    bottom: 0; /* Stick to bottom */
-    width: 100%; /* Full width */
-    left: 0; /* Align to the left edge */
+    background: #2c2c2c;
+    color: #ffffff;
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    font-family: Arial, sans-serif;
 }
 
+footer p {
+    margin: 0;
+    font-size: 0.9em;
+}
+
+.social-links {
+    flex: 1;
+}
+
+.social-links a {
+    color: #ffffff;
+    margin-right: 15px;
+    text-decoration: none;
+    font-size: 1em;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #00aced;
+}
+
+.newsletter {
+    display: flex;
+    flex: 1;
+    text-align: right;
+    margin-right: 5px;
+}
+
+.newsletter form {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align to the left */
+    gap: 1px; 
+}
+
+.newsletter label {
+    margin-right: 5px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.newsletter input[type="email"] {
+    padding: 6px;
+    border: none;
+    border-radius: 4px;
+    width: 160px;
+    margin-right: 5px;
+    font-size: 0.85em;
+}
+
+.newsletter button {
+    width: 50px;
+    margin-right: 5px;
+    padding: 0px;
+    background: #00aced;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.5em;
+    transition: background 0.3s;
+}
+
+.newsletter button:hover {
+    background: #0084b4;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    footer {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .social-links, .newsletter {
+        flex: none;
+        margin-top: 10px;
+    }
+
+    .newsletter form {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .newsletter input[type="email"],
+    .newsletter button {
+        width: 50%;
+        margin: 5px 0;
+    }
+}
 
 
 /* FOUNDER */
@@ -438,7 +539,7 @@ footer {
     background-color: #f9f9f9;
 }
 
-/* Styling for the founder photo */
+/* founder photo */
 .founder-photo {
     width: 400px;
     height: 600px;
@@ -669,3 +770,21 @@ button[type="submit"]:hover {
         font-size: 0.9rem;
     }
 }
+
+/* Contact Us */
+.contact-section {
+    max-width: 500px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7);;
+}
+.contact-form {
+    max-width: 400px;
+    padding: 20px;
+    background-color: #F5FEFD;
+}
+
+textarea {
+    width: 100%;
+    height: 400px;
+    font-size: 16px;
+  }
