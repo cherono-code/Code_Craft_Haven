@@ -5,11 +5,26 @@
 {% block content %}
 <section class="contact-section">
     <h2>Contact Us</h2>
-    <form class="contact-form">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <textarea name="message" placeholder="Your Message" required></textarea>
-        <button type="submit">Send Message</button>
+    <form method="POST" action="{{ url_for('main.contact') }}">
+        {{ form.hidden_tag() }}  <!-- CSRF Token -->
+        <div>
+            {{ form.name.label }}<br>
+            {{ form.name(size=32) }}
+        </div>
+        <div>
+            {{ form.email.label }}<br>
+            {{ form.email(size=32) }}
+        </div>
+        <div>
+            {{ form.message.label }}<br>
+            {{ form.message(rows=4, cols=50) }}
+        </div>
+        <div>
+            {{ form.recaptcha }}
+        </div>
+        <div>
+            <button type="submit">Send Message</button>
+        </div>
     </form>
 </section>
 {% endblock %}

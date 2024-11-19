@@ -1,6 +1,23 @@
-from flask import Blueprint, render_template, request, jsonify
+from flask import Blueprint, flash, render_template, request, jsonify, redirect, url_for, current_app
+import requests
 
+# Define the main blueprint
 main = Blueprint('main', __name__)
+
+# Helper function to verify reCAPTCHA
+def verify_recaptcha(response_token):
+    payload = {
+        'secret': current_app.config['RECAPTCHA_PRIVATE_KEY'],  # private key
+        'response': response_token
+    }
+    # Send request to Google reCAPTCHA API
+    response = requests.post('https://www.google.com/recaptcha/api/siteverify', data=payload)
+    result = response.json()
+    return result.get('success', False)
+
+@main.route('/')
+def index():
+    return render_template('index.html')
 
 @main.route('/community')
 def community():
@@ -18,8 +35,23 @@ def mentor():
 def founder():
     return render_template('founder.html')
 
-@main.route('/contact')
+@main.route('/contact', methods=['GET', 'POST'])
 def contact():
+    if request.method == 'POST':
+        # Get form data
+        name = request.form['name']
+        email = request.form['email']
+        message = request.form['message']
+        recaptcha_response = request.form['g-recaptcha-response']
+
+        # Verify reCAPTCHA
+        if verify_recaptcha(recaptcha_response):
+            # Process contact form submission
+            return "Message Sent!"
+        else:
+            flash("reCAPTCHA verification failed. Please try again.", "danger")
+            return redirect(url_for('main.contact'))
+
     return render_template('contact.html')
 
 @main.route('/signup')
@@ -29,14 +61,71 @@ def signup():
 @main.route('/chatbot', methods=['POST'])
 def chatbot():
     user_message = request.json.get('message')
-
-    # Basic chatbot logic
     responses = {
         "hello": "Hi there! How can I assist you today?",
         "what is code craft haven?": "Code Craft Haven is a community and platform for developers to learn, grow, and connect.",
         "tell me about the hackathon": "Our upcoming hackathon is a day event where developers can collaborate and build innovative projects.",
-        # Add more responses as needed
+        "how can i join a group": "You can join a group by signing up on our platform and exploring community groups that match your interests."
     }
-
     response = responses.get(user_message.lower(), "I'm sorry, I don't understand that. Can you try asking something else?")
     return jsonify({"response": response})
+
+@main.route('/register', methods=['POST'])
+def register():
+    name = request.form['name']
+    email = request.form['email']
+    # Save registration details or send an email
+    return "Registration Successful!"
+
+@main.route('/submit_registration', methods=['POST'])
+def submit_registration():
+    try:
+        # Get the reCAPTCHA response token from the form
+        recaptcha_response = request.form['g-recaptcha-response']
+
+        # Verify reCAPTCHA
+        if not verify_recaptcha(recaptcha_response):
+            flash("reCAPTCHA verification failed. Please try again.", "danger")
+            return redirect(url_for('main.signup'))
+
+        # Get form data
+        name = request.form.get('name')
+        email = request.form.get('email')
+        phone = request.form.get('phone')
+        location = request.form.get('location')
+        organization = request.form.get('organization')
+        role = request.form.get('Role')
+        other_role = request.form.get('otherRole') if role == 'Other' else None
+        proficiency = request.form.get('proficiency')
+
+        # Get Firestore client
+        db = current_app.config['db']
+
+        # Structure the registration data
+        registration_data = {
+            'name': name,
+            'email': email,
+            'phone': phone,
+            'location': location,
+            'organization': organization,
+            'role': role,
+            'other_role': other_role,
+            'proficiency': proficiency,
+            'timestamp': firestore.SERVER_TIMESTAMP
+        }
+
+        # Store the registration data in Firestore
+        db.collection('registrations').add(registration_data)
+        flash("Registration successful! Thank you for signing up.", "success")
+
+        # Redirect or show a success message
+        return redirect(url_for('main.registration_success'))
+
+    except Exception as e:
+        current_app.logger.error(f"Error saving registration: {e}")
+        flash("An error occurred. Please try again later.", "danger")
+        return redirect(url_for('main.signup'))
+
+@main.route('/registration_success')
+def registration_success():
+    return "Thank you for registering! We’ll be in touch soon."

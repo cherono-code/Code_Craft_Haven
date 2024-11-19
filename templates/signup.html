@@ -1,61 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register for Code Craft Haven</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-</head>
-<body class="signup">
-    <div class="form-container">
-        <h2>Join Code Craft Haven's Latest Hackathon</h2>
-        <form action="/submit_registration" method="POST">
-            <label for="name">Full Name:</label>
-            <input type="text" id="name" name="name" required>
+{% extends 'base.html' %}
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+{% block title %}Register - Code Craft Haven{% endblock %}
 
-            <label for="phone">Phone Number:</label>
-            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
-
-            <label for="location">Location:</label>
-            <input type="text" id="location" name="location" required>
-
-            <label for="organization">Organization / Institution:</label>
-            <input type="text" id="organization" name="organization">
-
-            <label for="Role">Role | Position:</label><br>
-            <input type="radio" id="developer" name="Role" value="Developer">
-            <label for="developer">Developer</label><br>
-
-            <input type="radio" id="designer" name="Role" value="Designer">
-            <label for="designer">Designer</label><br>
-
-            <input type="radio" id="Devops" name="Role" value="Devops">
-            <label for="Devops">Devops</label><br>
-
-            <input type="radio" id="other" name="Role" value="Other">
-            <label for="other">Other</label><br>
-
-            <div id="other-role-container" style="display: none; margin-top: 0.5rem;">
-                <label for="otherRole">Please specify:</label>
-                <input type="text" id="otherRole" name="otherRole" placeholder="Enter your role">
-            </div>
-
-            <label for="proficiency">How would you rate your coding proficiency? *</label><br>
-            <input type="radio" id="beginner" name="proficiency" value="Beginner">
-            <label for="beginner">Beginner</label><br>
-
-            <input type="radio" id="intermediate" name="proficiency" value="Intermediate">
-            <label for="intermediate">Intermediate</label><br>
-
-            <input type="radio" id="expert" name="proficiency" value="Expert">
-            <label for="expert">Expert</label><br>
-
-            <button type="submit" class="btn">Submit</button>
-        </form>
-    </div>
-    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
-</body>
-</html>
+{% block content %}
+<section class="registration-section">
+    <h2>Register for Code Craft Haven Hackathon</h2>
+    <form method="POST" action="{{ url_for('main.submit_registration') }}">
+        {{ form.hidden_tag() }}  <!-- CSRF Token -->
+        <div>
+            {{ form.name.label }}<br>
+            {{ form.name(size=32) }}
+        </div>
+        <div>
+            {{ form.email.label }}<br>
+            {{ form.email(size=32) }}
+        </div>
+        <div>
+            {{ form.phone.label }}<br>
+            {{ form.phone(size=32) }}
+        </div>
+        <div>
+            {{ form.location.label }}<br>
+            {{ form.location(size=32) }}
+        </div>
+        <div>
+            {{ form.organization.label }}<br>
+            {{ form.organization(size=32) }}
+        </div>
+        <div>
+            {{ form.role.label }}<br>
+            {{ form.role() }}
+        </div>
+        <div>
+            {{ form.proficiency.label }}<br>
+            {{ form.proficiency() }}
+        </div>
+        <div>
+            {{ form.recaptcha }}
+        </div>
+        <div>
+            <button type="submit">Register</button>
+        </div>
+    </form>
+</section>
+{% endblock %}
