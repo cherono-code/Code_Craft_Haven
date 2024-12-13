@@ -72,3 +72,13 @@ serviceAccountKey.json
 #virtual environment
 venv/
 
+# Firebase config files
+.firebaserc
+firebase.json
+database.rules.json
+storage.rules
+
+# Python cache files
+__pycache__/
+*.pyc
+

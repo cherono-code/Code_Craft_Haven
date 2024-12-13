@@ -1,5 +1,7 @@
 from flask import Blueprint, flash, render_template, request, jsonify, redirect, url_for, current_app
 import requests
+from .forms import ContactForm  # Import the ContactForm class from forms.py
+from google.cloud import firestore
 
 # Define the main blueprint
 main = Blueprint('main', __name__)
@@ -35,24 +37,25 @@ def mentor():
 def founder():
     return render_template('founder.html')
 
+# Updated contact route using Flask-WTF form
 @main.route('/contact', methods=['GET', 'POST'])
 def contact():
-    if request.method == 'POST':
-        # Get form data
-        name = request.form['name']
-        email = request.form['email']
-        message = request.form['message']
-        recaptcha_response = request.form['g-recaptcha-response']
+    form = ContactForm()
+    if form.validate_on_submit():
+        name = form.name.data
+        email = form.email.data
+        message = form.message.data
+        recaptcha_response = form.recaptcha.data  # reCAPTCHA response
 
         # Verify reCAPTCHA
         if verify_recaptcha(recaptcha_response):
-            # Process contact form submission
-            return "Message Sent!"
+            # Process contact form submission (e.g., save to database or send email)
+            return "Message Sent!"  # Or redirect to a success page
         else:
             flash("reCAPTCHA verification failed. Please try again.", "danger")
             return redirect(url_for('main.contact'))
 
-    return render_template('contact.html')
+    return render_template('contact.html', form=form)
 
 @main.route('/signup')
 def signup():
@@ -70,13 +73,7 @@ def chatbot():
     response = responses.get(user_message.lower(), "I'm sorry, I don't understand that. Can you try asking something else?")
     return jsonify({"response": response})
 
-@main.route('/register', methods=['POST'])
-def register():
-    name = request.form['name']
-    email = request.form['email']
-    # Save registration details or send an email
-    return "Registration Successful!"
-
+# Simplified registration route
 @main.route('/submit_registration', methods=['POST'])
 def submit_registration():
     try:
@@ -99,7 +96,7 @@ def submit_registration():
         proficiency = request.form.get('proficiency')
 
         # Get Firestore client
-        db = current_app.config['db']
+        db = current_app.config['db']  # Firebase Firestore client
 
         # Structure the registration data
         registration_data = {
